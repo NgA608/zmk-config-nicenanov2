@@ -1,0 +1,6 @@
+if SHIELD_BASICNUM
+
+config ZMK_KEYBOARD_NAME
+    default "BASICNUM"
+
+endif
