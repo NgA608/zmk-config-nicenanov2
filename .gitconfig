@@ -1,0 +1,10 @@
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+[user]
+	name = NgA608
+	email = 166960937+NgA608@users.noreply.github.com
+[gui]
+	recentrepo = C:/Users/ngya6/Documents/GitHub/zmk-config-nicenanov2
