@@ -21,15 +21,15 @@
     };
 
     macros {
-        ctrl_alt_v: ctrl_alt_v {
+        ctrl_shift_v: ctrl_shift_v {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings
                 = <&macro_press &kp LCTRL>
-                , <&macro_press &kp LALT>
+                , <&macro_press &kp LSHIFT>
                 , <&macro_tap &kp V>
                 , <&macro_release &kp LCTRL>
-                , <&macro_release &kp LALT>
+                , <&macro_release &kp LSHIFT>
                 ;
         };
     };
@@ -61,7 +61,7 @@
 
         bindings = <
         &kp DEL   &kp RPAR   &kp LPAR   &none
-        &kp BSPC   &kp EQUAL   &kp F4   &bootloader
+        &kp BSPC   &kp EQUAL   &kp F4   &none
                 &none   &none   &none  
         &none   &none   &none   &none
                 &none   &none
@@ -74,7 +74,7 @@
         &to BTBOOT   &none   &none   &tog TAP
         &none   &none   &none   &none
                 &none   &kp LC(PG_DN)   &kp LC(PG_UP) 
-        &ctrl_alt_v   &kp LC(V)   &kp LC(C)   &kp LSHIFT
+        &ctrl_shift_v   &kp LC(V)   &kp LC(C)   &kp LSHIFT
                 &kp LALT   &kp LCTRL
             >;
         };
