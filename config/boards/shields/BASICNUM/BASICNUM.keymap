@@ -3,7 +3,8 @@
 #include <dt-bindings/zmk/bt.h>
 #define DEFAULT 0
 #define SECONDARY 1
-#define BTBOOT 2
+#define TERTIARY 2
+#define BTBOOT 3
 
 #define NONE 0
 
@@ -14,6 +15,18 @@
             #binding-cells = <0>;
             tapping-term-ms = <150>;
             bindings = <&mo SECONDARY>, <&kp LWIN>, <&to BTBOOT>;
+        };
+    };
+
+    macros {
+        CTRLC: ctrl_c {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_press &kp LCTRL>
+                , <&macro_tap &kp C &kp V>
+                , <&macro_release &kp LCTRL>
+                ;
         };
     };
 
@@ -34,21 +47,32 @@
         secondary_layer {
 
         bindings = <
+        &kp EQUAL   &kp RPAR   &kp LPAR   &none
+        &none   &none   &mo TERTIARY   &none
+                &none   &none   &kp F4  
+        &none   &none   &none   &none
+                &kp LC(V)   &kp LC(C)
+            >;
+        };
+
+        tertiary_layer {
+
+        bindings = <
         &none   &none   &none   &none
         &none   &none   &none   &none
                 &none   &none   &none  
-        &none   &none   &kp KP_N9   &bootloader
-                &none   &none 
+        &none   &none   &none   &none
+                &kp LC(LS(V))   &none
             >;
         };
 
         btboot_layer {
 
         bindings = <
-        &bootloader   &none   &none   &none
+        &bootloader   &bt BT_CLR_ALL   &none   &none
         &none   &none   &none   &none
-                &none   &none   &none  
-        &none   &none   &kp KP_N4   &none
+                &none   &bt BT_SEL 4   &bt BT_SEL 3  
+        &to DEFAULT   &bt BT_SEL 2   &bt BT_SEL 1   &bt BT_SEL 0
                 &none   &none 
             >;
         };
