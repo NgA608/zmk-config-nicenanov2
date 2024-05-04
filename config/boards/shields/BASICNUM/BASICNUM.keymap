@@ -3,33 +3,44 @@
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/outputs.h>
 #define DEFAULT 0
-#define SECONDARY 1
-#define TERTIARY 2
+#define TAP 1
+#define HOLD 2
 #define BTBOOT 3
 
 #define NONE 0
 
 / {
     behaviors {
-        td0: tap_dance_0 {
-            compatible = "zmk,behavior-tap-dance";
+         ht0: positional_hold_tap {
+            compatible = "zmk,behavior-hold-tap";
             #binding-cells = <0>;
-            tapping-term-ms = <150>;
-            bindings = <&mo SECONDARY>, <&kp LWIN>, <&to BTBOOT>;
-        };
+            flavor = "hold-preferred";
+            tapping-term-ms = <300>;
+            quick-tap-ms = <200>;
+            bindings = <&mo HOLD>, <&tog TAP>;
+         };
     };
 
     macros {
-        CTRLC: ctrl_c {
+        CTRLUP: ctrl_up {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings
                 = <&macro_press &kp LCTRL>
-                , <&macro_tap &kp C &kp V>
+                , <&macro_tap &kp PG_UP>
                 , <&macro_release &kp LCTRL>
                 ;
         };
     };
+
+    //combos {
+        //compatible = "zmk,combos";
+        //combo_esc {
+            //timeout-ms = <50>;
+            //key-positions = <0 1>;
+            //bindings = <&kp ESC>;
+        //};
+    //};
 
     keymap {
         compatible = "zmk,keymap";
@@ -45,25 +56,25 @@
             >;
         };
 
-        secondary_layer {
+        hold_layer {
 
         bindings = <
-        &kp EQUAL   &kp RPAR   &kp LPAR   &none
-        &none   &none   &mo TERTIARY   &none
-                &none   &none   &kp F4  
+        &kp DEL   &kp RPAR   &kp LPAR   &none
+        &kp BSPC   &kp EQUAL   &kp F4   &bootloader
+                &none   &none   &none  
         &none   &none   &none   &none
-                &kp LC(V)   &kp LC(C)
+                &none   &none
             >;
         };
 
-        tertiary_layer {
+        tap_layer {
 
         bindings = <
+        &none   &none   &none   &tog TAP
         &none   &none   &none   &none
-        &none   &none   &none   &none
-                &none   &none   &none  
-        &none   &none   &none   &none
-                &kp LC(LS(V))   &none
+                &none   &kp LC(PG_UP)   &kp LC(PG_DN) 
+        &none   &kp LC(V)   &kp LC(C)   &LSHIFT
+                &kp LALT   &kp LCTRL
             >;
         };
 
