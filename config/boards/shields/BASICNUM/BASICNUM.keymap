@@ -71,8 +71,8 @@
         bindings = <
         &to BTBOOT   &none   &none   &tog TAP
         &none   &none   &none   &none
-                &none   &kp LC(PG_UP)   &kp LC(PG_DN) 
-        &none   &kp LC(V)   &kp LC(C)   &kp LSHIFT
+                &none   &kp LC(PG_DN)   &kp LC(PG_UP) 
+        &kp LC(LALT(V))   &kp LC(V)   &kp LC(C)   &kp LSHIFT
                 &kp LALT   &kp LCTRL
             >;
         };
