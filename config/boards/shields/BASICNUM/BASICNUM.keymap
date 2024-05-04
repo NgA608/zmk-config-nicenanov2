@@ -12,8 +12,8 @@
         td0: tap_dance_0 {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
-            tapping-term-ms = <200>;
-            bindings = <&mo SECONDARY>, <&none>, <&to BTBOOT>;
+            tapping-term-ms = <150>;
+            bindings = <&mo SECONDARY>, <&kp LWIN>, <&to BTBOOT>;
         };
     };
 
