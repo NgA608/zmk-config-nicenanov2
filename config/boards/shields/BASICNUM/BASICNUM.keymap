@@ -21,13 +21,15 @@
     };
 
     macros {
-        CTRLUP: ctrl_up {
+        CAV: ctrl_alt_v {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings
                 = <&macro_press &kp LCTRL>
-                , <&macro_tap &kp PG_UP>
+                , <&macro_press &kp LALT>
+                , <&macro_tap &kp V>
                 , <&macro_release &kp LCTRL>
+                , <&macro_release &kp LALT>
                 ;
         };
     };
@@ -72,7 +74,7 @@
         &to BTBOOT   &none   &none   &tog TAP
         &none   &none   &none   &none
                 &none   &kp LC(PG_DN)   &kp LC(PG_UP) 
-        &kp LC(LALT(V))   &kp LC(V)   &kp LC(C)   &kp LSHIFT
+        &cav   &kp LC(V)   &kp LC(C)   &kp LSHIFT
                 &kp LALT   &kp LCTRL
             >;
         };
