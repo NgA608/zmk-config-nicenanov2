@@ -7,18 +7,19 @@
 #define HOLD 2
 #define BTBOOT 3
 
+#define MO_TOG(DEFAULT) &mo_tog HOLD TAP
+
 #define NONE 0
 
 / {
     behaviors {
-         ht0: positional_hold_tap {
+         mo_tog: behavior_mo_tog {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "hold-preferred";
-            tapping-term-ms = <300>;
-            quick-tap-ms = <200>;
-            bindings = <&mo HOLD>, <&tog TAP>;
-         };
+            tapping-term-ms = <200>;
+            bindings = <&mo>, <&tog>;
+        };
     };
 
     macros {
@@ -48,7 +49,7 @@
         default_layer {
 
         bindings = <
-        &kp MINUS   &kp ASTRK   &kp FSLH    &ht0
+        &kp MINUS   &kp ASTRK   &kp FSLH    &mo_tog HOLD TAP
         &kp PLUS    &kp KP_N9       &kp KP_N8       &kp KP_N7
                     &kp KP_N6       &kp KP_N5       &kp KP_N4   
         &kp KP_ENTER     &kp KP_N3       &kp KP_N2       &kp KP_N1
