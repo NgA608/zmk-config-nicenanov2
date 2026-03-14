@@ -18,6 +18,13 @@
             tapping-term-ms = <200>;
             bindings = <&mo>, <&tog>;
         };
+
+        td_com: tap_dance_comma {
+            compatible = "zmk, behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp DOT>, <&kp COMMA>;
+        }
     };
 
     macros {
@@ -30,6 +37,37 @@
                 , <&macro_tap &kp V>
                 , <&macro_release &kp LCTRL>
                 , <&macro_release &kp LSHIFT>
+                ;
+        };
+
+        xl_AND: xl_AND {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_tap &kp LS(A)>
+                , <&macro_tap &kp LS(N)>
+                , <&macro_tap &kp LS(D)>
+                , <&macro_tap &kp LPAR>
+                ;
+        };
+
+        xl_IF: xl_IF {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_tap &kp LS(I)>
+                , <&macro_tap &kp LS(F)>
+                , <&macro_tap &kp LPAR>
+                ;
+        };
+
+        xl_OR: xl_OR {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_tap &kp LS(O)>
+                , <&macro_tap &kp LS(R)>
+                , <&macro_tap &kp LPAR>
                 ;
         };
     };
@@ -49,33 +87,33 @@
         default_layer {
 
         bindings = <
-        &kp MINUS   &kp ASTRK   &kp FSLH    &mo_tog HOLD TAP
-        &kp PLUS    &kp KP_N9       &kp KP_N8       &kp KP_N7
-                    &kp KP_N6       &kp KP_N5       &kp KP_N4   
-        &kp KP_ENTER     &kp KP_N3       &kp KP_N2       &kp KP_N1
-                    &kp DOT     &kp KP_N0 
+        &kp MINUS     &kp ASTRK   &kp FSLH    &mo_tog HOLD TAP
+        &kp PLUS      &kp KP_N9   &kp KP_N8   &kp KP_N7
+                      &kp KP_N6   &kp KP_N5   &kp KP_N4   
+        &kp KP_ENTER  &kp KP_N3   &kp KP_N2   &kp KP_N1
+                      &td_com     &kp KP_N0 
             >;
         };
 
         hold_layer {
 
         bindings = <
-        &kp DEL   &kp RPAR   &kp LPAR   &none
-        &kp BSPC   &kp EQUAL   &kp F4   &none
-                &none   &none   &none  
-        &none   &none   &none   &none
-                &none   &none
+        &kp DEL     &kp RPAR    &kp LPAR   &none
+        &kp BSPC    &kp EQUAL   &kp F4     &none
+                    &kp LC(R)   &none      &none  
+        &kp LC(D)   &none       &none      &none
+                    &none       &none
             >;
         };
 
         tap_layer {
 
         bindings = <
-        &to BTBOOT   &none   &none   &tog TAP
-        &none   &none   &none   &none
-                &none   &kp LC(PG_DN)   &kp LC(PG_UP) 
-        &ctrl_shift_v   &kp LC(V)   &kp LC(C)   &kp LSHIFT
-                &kp LALT   &kp LCTRL
+        &kp DEL       &kp RPAR    &kp LPAR    &tog TAP
+        &none         &kp EQUAL   &kp F4      &kp COMMA
+                      &xl_OR      &xl_IF      &xl_AND 
+        &kp KP_ENTER  &kp LC(V)   &kp LC(C)   &kp LSHIFT
+                      &kp LALT    &kp LCTRL
             >;
         };
 
